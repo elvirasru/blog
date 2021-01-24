@@ -115,16 +115,20 @@ h6 {
       </p>
 
       <p>As data is stored into three different CSV files, it has been gathering all together into a single data set.</p>
+
       <div>
         <center>
         <img src="images/datasetsample.PNG" class="responsive">
         </center>
       </div>
 
-
       <p>Next, you may find a summarize of the steps executed so as to clean data. </p>
+
       <ol>
       <li>Update data types for columns "Código Objetivo Profesional 1", "Código Objetivo Profesional 2" and "Código Objetivo Profesional 3".</li>
+       <pre class="brush: python">
+        dataset["Código Objetivo Profesional 1"] = dataset["Código Objetivo Profesional 1"].astype('Int64')
+        </pre>
         <center>
         <img src="images/step1.PNG" class="responsive">
         </center>
