@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
 * {
   box-sizing: border-box;
 }
@@ -82,7 +82,8 @@ h6 {
 }
 
 /* Clearfix (clear floats) */
-.row::after {
+.row2::after {
+  margin: auto;
   content: "";
   clear: both;
   display: table;
@@ -99,150 +100,175 @@ h6 {
     padding: 0;
   }
 }
-</style>
+
+    </style>
 </head>
 <body>
 
 <div class="header">
-  <h2>Blog</h2>
+    <h2>Blog</h2>
 </div>
 
 <div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>Does COVID-19 really impact in unemployment rate?</h2>
-      <h5>An analysis of Madrid unemployment rate, Jan 24, 2021</h5>
-      <img src="images/covid.jpg" class="responsive">
-      <p>As everybody knows, 2020 will be a reminder as the year of confinement, social distance, not traveling, telecommuting... Besides, I am sure that any of you have seen in the news the economical crisis many people is suffering from. Some restaurants are forced to close, many businesses have had to ask for an ERTE (the government keep paying part of employees salaries even though they cannot work),... Then, the question is, has this extrem situation being
-        reflected in the unemployment rate? </p>
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Does COVID-19 really impact in unemployment rate?</h2>
+            <h5>An analysis of Madrid unemployment rate, Jan 24, 2021</h5>
+            <img src="images/covid.jpg" class="responsive">
+            <p>As everybody knows, 2020 will be a reminder as the year of confinement, social distance, not traveling,
+                telecommuting... Besides, I am sure that any of you have seen in the news the economical crisis many
+                people is suffering from. Some restaurants are forced to close, many businesses have had to ask for an
+                ERTE (the government keep paying part of employees salaries even though they cannot work),... Then, the
+                question is, has this extrem situation being
+                reflected in the unemployment rate? </p>
 
-      <p>To give an answer to this question, we will have a look at the unemployment rate of the city of Madrid. This data has been taken from the
-        Madrid open data <a href="https://datos.madrid.es/sites/v/index.jsp?vgnextoid=710e760a581a7610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD">website</a>.
-        It collects the unemployment data from 2018 to 2020. It should be noted that this data also gathers people's job preferences.</p>
+            <p>To give an answer to this question, we will have a look at the unemployment rate of the city of Madrid.
+                This data has been taken from the
+                Madrid open data <a
+                        href="https://datos.madrid.es/sites/v/index.jsp?vgnextoid=710e760a581a7610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD">website</a>.
+                It collects the unemployment data from 2018 to 2020. It should be noted that this data also gathers
+                people's job preferences.</p>
 
-      <h6><b>Data Exploration</b></h6>
-      <p>With a view to performing the data exploration, it has been used the library pandas from <b>Python</b>. You may find the source code
-        <a href="https://github.com/elvirasru/exploratoy/blob/main/madrid_unemployment.ipynb">here</a>.
-      </p>
+            <h6><b>Data Exploration</b></h6>
+            <p>With a view to performing the data exploration, it has been used the library pandas from <b>Python</b>.
+                You may find the source code
+                <a href="https://github.com/elvirasru/exploratoy/blob/main/madrid_unemployment.ipynb">here</a>.
+            </p>
 
-      <p>As data is stored into three different CSV files, it has been gathering all together into a single data set.
-        Below you may see a sample:</p>
+            <p>As data is stored into three different CSV files, it has been gathering all together into a single data
+                set.
+                Below you may see a sample:</p>
 
-      <div>
-        <center>
-        <img src="images/datasetsample.PNG" class="responsive">
-        </center>
-      </div>
-      <br>
-      <p>Next, you may find a summarize of the steps executed so as to clean data. </p>
+            <div>
+                <center>
+                    <img src="images/datasetsample.PNG" class="responsive">
+                </center>
+            </div>
+            <br>
+            <p>Next, you may find a summarize of the steps executed so as to clean data. </p>
 
-      <ol>
-      <li>Update data types for columns "Código Objetivo Profesional 1", "Código Objetivo Profesional 2" and "Código Objetivo Profesional 3".</li>
-        <br>
-        <center>
-        <img src="images/step1.PNG" class="responsive" style="width:90%">
-        </center>
-         <br>
-      <li>Split column "Fecha de Inscripción" into two new columns ("InscriptionYear" and "InscriptionMonth") and modify them</li>
+            <ol>
+                <li>Update data types for columns "Código Objetivo Profesional 1", "Código Objetivo Profesional 2" and
+                    "Código Objetivo Profesional 3".
+                </li>
+                <br>
+                <center>
+                    <img src="images/step1.PNG" class="responsive" style="width:90%">
+                </center>
+                <br>
+                <li>Split column "Fecha de Inscripción" into two new columns ("InscriptionYear" and "InscriptionMonth")
+                    and modify them
+                </li>
 
-         <br>
-        <center>
-        <img src="images/step222.PNG" class="responsive" style="width:90%" align="center">
-        </center>
-        <br>
-          <br>
-      <li>Remove unnecessary columns "Fecha de Inscripción", "Código Objetivo Profesional 2", "Código Objetivo Profesional 3",
-        "Objetivo Profesional 2" and "Objetivo Profesional 3". (We wil only take into account the first job position option)</li>
-         <br>
-        <center>
-        <img src="images/step32.PNG" class="responsive" style="width:85%">
-          </center>
-         <br>
-      <li>Replace null values inside "Código Objetivo Profesional 1" and "Objetivo Profesional 1" columns.
-        According to the data set description these values are empty because the person did not specify the job position. So
-        they will be replaced by "Unknown".</li>
-         <br>
-        <center>
-        <img src="images/step4.PNG" class="responsive" style="width:80%">
-           </center>
-        <br>
-      <li>Sort observations by year and month</li>
-         <br>
-         <center>
-        <img src="images/step5.PNG" class="responsive" style="width:65%">
-         </center>
-         <br>
-      </ol>
-
-
-    <p>After the given steps, you may see how the final data set looks like: </p>
-      <br>
-        <center>
-        <img src="images/finaldataset.PNG" class="responsive">
-        </center>
-
-      <br>
-    <p> From here we could get some interesting information such as which are the most demanding job positions:</p>
-      <ol>
-        <li>Shopping sellers</li>
-        <li>Cleaner personal</li>
-        <li>Administrative</li>
-      </ol>
-
-
-      <h6><b>Data Visualization</b></h6>
-      <p>It is also interesting visualization to get to understand which has been the unemployment profile for the years 2018, 2019, and 2020.
-        We may see that there are significantly more women than man and most of them are Spanish people.</p>
+                <br>
+                <center>
+                    <img src="images/step222.PNG" class="responsive" style="width:90%" align="center">
+                </center>
+                <br>
+                <br>
+                <li>Remove unnecessary columns "Fecha de Inscripción", "Código Objetivo Profesional 2", "Código Objetivo
+                    Profesional 3",
+                    "Objetivo Profesional 2" and "Objetivo Profesional 3". (We wil only take into account the first job
+                    position option)
+                </li>
+                <br>
+                <center>
+                    <img src="images/step32.PNG" class="responsive" style="width:85%">
+                </center>
+                <br>
+                <li>Replace null values inside "Código Objetivo Profesional 1" and "Objetivo Profesional 1" columns.
+                    According to the data set description these values are empty because the person did not specify the
+                    job position. So
+                    they will be replaced by "Unknown".
+                </li>
+                <br>
+                <center>
+                    <img src="images/step4.PNG" class="responsive" style="width:80%">
+                </center>
+                <br>
+                <li>Sort observations by year and month</li>
+                <br>
+                <center>
+                    <img src="images/step5.PNG" class="responsive" style="width:65%">
+                </center>
+                <br>
+            </ol>
 
 
-        <center>
-        <img src="images/sex.png" style="width:55%" class="responsive">
-        </center>
+            <p>After the given steps, you may see how the final data set looks like: </p>
+            <br>
+            <center>
+                <img src="images/finaldataset.PNG" class="responsive">
+            </center>
 
-      <p>Although there no huge difference the majority of unemployed are around 36 and 55. </p>
+            <br>
+            <p> From here we could get some interesting information such as which are the most demanding job
+                positions:</p>
+            <ol>
+                <li>Shopping sellers</li>
+                <li>Cleaner personal</li>
+                <li>Administrative</li>
+            </ol>
 
-    <center>
-        <img src="images/age.png" style="width:55%" class="responsive">
-    </center>
 
-    <p>Finally, what we want to know if there has been any difference in the amount of unemployed between those years.</p>
+            <h6><b>Data Visualization</b></h6>
+            <p>It is also interesting visualization to get to understand which has been the unemployment profile for the
+                years 2018, 2019, and 2020.
+                We may see that there are significantly more women than man and most of them are Spanish people.</p>
 
-      <div class="row" align="center">
-        <center>
-        <div class="column" align="center">
-          <img src="images/year.png" style="width:90%" class="responsive">
+
+            <center>
+                <img src="images/sex.png" style="width:55%" class="responsive">
+            </center>
+
+            <p>Although there no huge difference the majority of unemployed are around 36 and 55. </p>
+
+            <center>
+                <img src="images/age.png" style="width:55%" class="responsive">
+            </center>
+
+            <p>Finally, what we want to know if there has been any difference in the amount of unemployed between those
+                years.</p>
+
+            <div class="row2">
+                <div class="column">
+                    <img src="images/year.png" style="width:90%" class="responsive">
+                </div>
+                <div class="column">
+                    <img src="images/yearandmonth.png" style="width:100%" class="responsive">
+                </div>
+            </div>
+
+
+            <p>Surprisingly, according to the data we have, 2020 has been a year with less unemployment than 2019.
+                However, we may also appreciate the impact of COVID-19 in the last graphic. All these years share the
+                same shape, at the beginning and at the end of the year there is more unemployment meanwhile there is a
+                decrease in the middle. It could be explained because of summer when there is more temporary work due to
+                tourism. But for 2020 it is a bit different. There is an increase of unemployed people in June. Why?
+                It matches with the end of the confinement. Also, there was a decrease of unemployed people between
+                March and May,
+                the confinement period.
+            </p>
+
+
+            <h6><b>Conclusion</b></h6>
+            <p>To summarize, data tell us that there is no increase in the number of unemployed persons, but there is a
+                change of behavior according to the number of unemployed people by month. Does it mean that COVID-19
+                didn't have any impact on employments?
+                I don't think so.</p>
+
         </div>
-      <div class="column" align="center">
-        <img src="images/yearandmonth.png" style="width:100%" class="responsive">
-      </div>
-      </center>
-      </div>
-
-
-
-    <p>Surprisingly, according to the data we have, 2020 has been a year with less unemployment than 2019. However, we may also appreciate the impact of COVID-19 in the last graphic. All these years share the same shape, at the beginning and at the end of the year there is more unemployment meanwhile there is a decrease in the middle. It could be explained because of summer when there is more temporary work due to tourism. But for 2020 it is a bit different. There is an increase of unemployed people in June. Why?
-      It matches with the end of the confinement. Also, there was a decrease of unemployed people between March and May,
-      the confinement period.
-      </p>
-
-
-
-      <h6><b>Conclusion</b></h6>
-      <p>To summarize, data tell us that there is no increase in the number of unemployed persons, but there is a change of behavior according to the number of unemployed people by month. Does it mean that COVID-19 didn't have any impact on employments?
-        I don't think so.</p>
 
     </div>
-
-  </div>
-  <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-      <img src="images/AvatarMaker.png" alt="Avatar" style="border-radius: 50%; width:50%" class="responsive">
-      <p><b>Elvira Segarra</b></p>
-      <p>Software Developer</p>
-      <a href="https://github.com/elvirasru">https://github.com/elvirasru</a>
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>About Me</h2>
+            <img src="images/AvatarMaker.png" alt="Avatar" style="border-radius: 50%; width:50%" class="responsive">
+            <p><b>Elvira Segarra</b></p>
+            <p>Software Developer</p>
+            <a href="https://github.com/elvirasru">https://github.com/elvirasru</a>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="footer">
