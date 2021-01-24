@@ -47,7 +47,6 @@ body {
 .fakeimg2 {
   width: 100%;
   padding: 20px;
-  background-image:url('images/covid.jpg')
 }
 
 /* Add a card effect for articles */
@@ -92,9 +91,96 @@ body {
     <div class="card">
       <h2>Does COVID-19 really impact in unemployment rate?</h2>
       <h5>An analysis of Madrid unemployment rate, Jan 24, 2021</h5>
+      <img src="images/covid.jpg" width="500" height="333">
       <div class="fakeimg2" style="height:200px;"></div>
-      <p>Some text..</p>
-      <p>text</p>
+      <p>As everybody knows, 2020 will be a reminder as the year of confinement, social distance, not traveling, telecommuting... Besides, I am sure that any of you have seen in the news the economical crisis many people is suffering from. Some restaurants are forced to close, many businesses have had to ask for an ERTE (the government keep paying part of employees salaries even though they cannot work),... Then, the question is, has this extrem situation being
+        reflected in the unemployment rate? </p>
+
+      <p>To give an answer to this question, we will have a look at the unemployment rate of the city of Madrid. This data has been taken from the
+        Madrid open data <a href="https://datos.madrid.es/sites/v/index.jsp?vgnextoid=710e760a581a7610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD">website</a>.
+        It collects the unemployment data from 2018 to 2020. It should be noted that this data also gathers people's job preferences.</p>
+
+      <h6><b>Data Exploration</b></h6>
+      <p>With a view to performing the data exploration, it has been used the library pandas from <b>Python</b>. You may find the source code
+        <a href="https://github.com/elvirasru/exploratoy/blob/main/madrid_unemployment.ipynb">here</a>.
+      </p>
+
+      <p>As data is stored into three different CSV files, it has been gathering all together into a single data set.</p>
+      <center>
+      <img src="images/datasetsample.PNG" width="500" height="333">
+      </center>
+
+      <p>Next, you may find a summarize of the steps executed so as to clean data. </p>
+      <ol>
+      <li>Update data types for columns "Código Objetivo Profesional 1", "Código Objetivo Profesional 2" and "Código Objetivo Profesional 3".</li>
+        <center>
+        <img src="images/step1.PNG">
+        </center>
+      <li>Split column "Fecha de Inscripción" into two new columns ("InscriptionYear" and "InscriptionMonth") and modify them</li>
+        <center>
+        <img src="images/step2.PNG">
+          <img src="images/step22.PNG">
+          <img src="images/step21.PNG">
+        </center>
+      <li>Remove unnecessary columns "Fecha de Inscripción", "Código Objetivo Profesional 2", "Código Objetivo Profesional 3",
+        "Objetivo Profesional 2" and "Objetivo Profesional 3". (We wil only take into account the first job position option)</li>
+        <center>
+        <img src="images/step3.PNG">
+        </center>
+      <li>Replace null values inside "Código Objetivo Profesional 1" and "Objetivo Profesional 1" columns.
+        According to the data set description these values are empty because the person did not specify the job position. So
+        they will be replaced by "Unknown".</li>
+        <center>
+        <img src="images/step4.PNG" >
+        </center>
+      <li>Sort observations by year and month</li>
+        <center>
+        <img src="images/step5.PNG">
+        </center>
+      </ol>
+
+
+      <p>After the given steps, you may see how the final data set looks like:
+        <center>
+        <img src="images/finaldataset.PNG">
+        </center>
+      From here we could get some interesting information such as which are the most demanding job positions:
+      <ol>
+        <li>Shopping sellers</li>
+        <li>Cleaner personal</li>
+        <li>Administrative</li>
+      </ol>
+      </p>
+
+      <h6><b>Data Visualization</b></h6>
+      <p>It is also interesting visualization to get to understand which has been the unemployment profile for the years 2018, 2019, and 2020.
+      We may see that there are significantly more women than man and most of them are Spanish people.
+        <center>
+        <img src="images/sex.PNG">
+        </center>
+            Although there no huge difference the majority of unemployed are around 36 and 55.
+      <center>
+        <img src="images/age.PNG">
+        </center>
+
+      Finally, what we want to know if there has been any difference in the amount of unemployed between those years.
+      <center>
+        <img src="images/year.PNG">
+        </center>
+      <center>
+        <img src="images/yearandmonth.PNG">
+        </center>
+      Surprisingly, according to the data we have, 2020 has been a year with less unemployment than 2019. However, we may also appreciate the impact of COVID-19 in the last graphic. All these years share the same shape, at the beginning and at the end of the year there is more unemployment meanwhile there is a decrease in the middle. It could be explained because of summer when there is more temporary work due to tourism. But for 2020 it is a bit different. There is an increase of unemployed people in June. Why?
+      It matches with the end of the confinement. Also, there was a decrease of unemployed people between March and May,
+      the confinement period.
+      </p>
+
+
+
+      <h6><b>Conclusion</b></h6>
+      <p>To summarize, data tell us that there is no increase in the number of unemployed persons, but there is a change of behavior according to the number of unemployed people by month. Does it mean that COVID-19 didn't have any impact on employments?
+        I don't think so.</p>
+
     </div>
 
   </div>
